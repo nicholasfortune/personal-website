@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>dragonfly v0</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="project-header-container">
+      <div class="project-title-container">
+        <h1>dragonfly v0</h1>
+        <p class="project-subtitle">autonomous guided model rocket</p>
+        <p class="project-subtitle">08/12/2024 - 28/08/2025</p>
+        <p class="project-subtitle">archived project</p>
+      </div>
+      <dl class="project-info-container">
+        <div>
+          <dt>length</dt>
+          <dd>100 cm</dd>
+        </div>
+        <div>
+          <dt>diameter</dt>
+          <dd>75 mm</dd>
+        </div>
+        <div>
+          <dt>airframe material</dt>
+          <dd>3d-printed foaming pla</dd>
+        </div>
+        <div>
+          <dt>dry mass</dt>
+          <dd>865 g</dd>
+        </div>
+        <div>
+          <dt>wet mass</dt>
+          <dd>993 g</dd>
+        </div>
+        <div>
+          <dt>recovery</dt>
+          <dd>30" nylon parachute</dd>
+        </div>
+        <div>
+          <dt>engine</dt>
+          <dd>aerotech g80t-14a</dd>
+        </div>
+        <div>
+          <dt>total impulse</dt>
+          <dd>137 n·s</dd>
+        </div>
+        <div>
+          <dt>flight computer</dt>
+          <dd>arduino mega 2560</dd>
+        </div>
+        <div>
+          <dt>power supply</dt>
+          <dd>11.1v 2250mah lipo battery</dd>
+        </div>
+        <div>
+          <dt>sensors</dt>
+          <dd>gps & imu</dd>
+        </div>
+        <div>
+          <dt>control loop</dt>
+          <dd>5hz gps / 20hz imu</dd>
+        </div>
+        <div>
+          <dt>guidance tech</dt>
+          <dd>proportional navigation</dd>
+        </div>
+        <div>
+          <dt>attitude control</dt>
+          <dd>servo-actuated fins</dd>
+        </div>
+        <div>
+          <dt>simulated apogee</dt>
+          <dd>379 m</dd>
+        </div>
+        <div>
+          <dt>simulated max velocity</dt>
+          <dd>104 m/s (mach 0.31)</dd>
+        </div>
+        <div>
+          <dt>flights</dt>
+          <dd>0 / unflown</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <!-- Images -->
+      <picture>
+        <source
+          srcset="
+            /assets/images/dragonfly-v0/low/dragonfly-booster.avif     400w,
+            /assets/images/dragonfly-v0/medium/dragonfly-booster.avif  800w,
+            /assets/images/dragonfly-v0/high/dragonfly-booster.avif   1200w,
+            /assets/images/dragonfly-v0/ultra/dragonfly-booster.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/dragonfly-v0/fallback/dragonfly-booster.webp"
+          alt="a photo of the dragonfly v0 booster"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row">
+        <p class="left-caption-text">dragonfly v0 booster</p>
+      </div>
+
+      <picture>
+        <source
+          srcset="
+            /assets/images/dragonfly-v0/low/dragonfly-compute-can.avif     400w,
+            /assets/images/dragonfly-v0/medium/dragonfly-compute-can.avif  800w,
+            /assets/images/dragonfly-v0/high/dragonfly-compute-can.avif   1200w,
+            /assets/images/dragonfly-v0/ultra/dragonfly-compute-can.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/dragonfly-v0/fallback/dragonfly-compute-can.webp"
+          alt="photo of the dragonfly v0 compute can"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row">
+        <p class="left-caption-text">dragonfly v0 compute can</p>
+      </div>
+
+      <picture>
+        <source
+          srcset="
+            /assets/images/dragonfly-v0/low/dragonfly-pcb.avif     400w,
+            /assets/images/dragonfly-v0/medium/dragonfly-pcb.avif  800w,
+            /assets/images/dragonfly-v0/high/dragonfly-pcb.avif   1200w,
+            /assets/images/dragonfly-v0/ultra/dragonfly-pcb.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/dragonfly-v0/fallback/dragonfly-pcb.webp"
+          alt="photo of the dragonfly v0 pcb"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row">
+        <p class="left-caption-text">dragonfly v0 pcb</p>
+      </div>
+
+      <!-- Project text -->
+      <ol class="project-numbered-text">
+        <li>
+          <h2>project summary</h2>
+          <p>
+            Dragonfly V0 is a waypoint-guided model rocket that utilizes a
+            four-fin aerodynamic actuation system for active trajectory
+            stabilization. At 1 meter long with a 75 mm diameter 3D-printed
+            airframe, the composite-propelled rocket weighs 993 g in total. With
+            a simulated apogee of ~380 meters providing substantial control
+            authority reserve, the guidance system is tested to operate within a
+            nominal target envelope of 30 m of lateral and 100 m of vertical
+            displacement.
+          </p>
+        </li>
+        <li>
+          <h2>guidance & control</h2>
+          <p>
+            The control architecture utilizes a dual-rate cascaded control loop
+            to decouple 5 Hz GPS waypoint guidance from 20 Hz IMU heading
+            stabilization. The rocket uses proportional navigation coupled with
+            an aerodynamic physics model following every GPS position update to
+            calculate the heading required to intercept the preprogrammed static
+            waypoint’s relative coordinates. The control loop’s second layer
+            samples IMU orientation and calculates the torque required to match
+            the previously derived heading command. An aerodynamic model of the
+            fins then calculates the required fin deflection angles to achieve
+            the required torques. Finally, the deflection angles are clamped and
+            sent to the servos.
+          </p>
+        </li>
+        <li>
+          <h2>system architecture & electronics</h2>
+          <p>
+            The airframe is made up of four modular, friction-fit blocks
+            designed with tight tolerances for convenient servicing:
+            propulsion/actuation, raceway/power, avionics, and recovery. The
+            engine/fin block has one AeroTech G80T-14A 29 mm solid rocket motor
+            for propulsion and four metal-geared servos arranged in a 90° radial
+            layout to actuate the 3D-printed control fins. The raceway/battery
+            block contains a wall-mounted LiPo battery and routes four 3-wire
+            PWM cables connecting the control surface actuation servos to the
+            avionics. The avionics block contains a removable cylindrical
+            exoskeleton sled, informally termed the “compute can,” that has
+            mounting points for the custom PCB and the Arduino Mega 2560.
+            Replacing the breadboard prototyping setup used in earlier versions,
+            the custom two-layer PCB increases spatial efficiency, eliminates
+            the high volume of jumper wires, and allows for strong soldered
+            connections. The recovery block contains a spring-loaded parachute
+            ejection system with an open-ended parachute canister kept under
+            tension by elastic bands. On electronic command, a servo disengages
+            a mechanical latch from a retaining notch on the canister to release
+            the mechanism and forcefully remove the friction-fit nosecone on the
+            way out, deploying and opening the parachute as it catches the
+            airstream. The recovery block also features four fixed canards
+            parallel to the main control surfaces for additional passive
+            stability.
+          </p>
+        </li>
+        <li>
+          <h2>evaluation and analysis</h2>
+          <p>
+            While bench testing verified that all electronic actuation systems
+            and heading stabilization loops were fully functional, active
+            guidance was never fully validated. A flight simulation program was
+            developed in the early days of the project to verify this exact
+            system, featuring 3D kinematics, aerodynamic calculations, actuator
+            dynamics, turbulence modeling, and custom mass & acceleration
+            profiles for an exceptionally accurate flight simulation. While
+            passive unguided flight behaved as expected, active guidance
+            simulations much preferred to dive into the ground. It was never
+            determined if this was an issue with the guidance program or the
+            simulation program, as the project was facing more important issues
+            in its last days—namely, the rocket being made out of foam.
+            3D-printed foaming PLA made up 100% of all structural components
+            (except for the PLA compute can exoskeleton) which resulted in the
+            rocket being exceptionally weak and brittle, for the advantage of
+            being under the weight budget. Furthermore, all structural
+            components that weren’t printed in one piece or friction fit (i.e.,
+            the fins) were hot glued on. At 60 cm² per fin, each fin would
+            generate an immense amount of aerodynamic torque with even the
+            smallest angles of attack, immediately detaching from the body
+            before being able to modulate the heading of the greater system.
+          </p>
+        </li>
+        <li>
+          <h2>next steps</h2>
+          <p>
+            I plan to resume this project in the near future with a full system
+            redesign using my accumulated knowledge. I’d like to integrate
+            better components such as a 25 Hz GPS module (with possible
+            overclocking to 100 Hz) and a magnetometer for eliminating
+            orientation drift and overall more accurate orientation estimation.
+            I’d like to make a fully custom microcontroller PCB with integrated
+            components and a high-performance processor, enabling a tighter
+            power budget and a much more aggressive 100 / 500 Hz dual-rate
+            cascaded loop mimicking the original control architecture. The
+            airframe would be made of cardboard with custom structural
+            components being made of PETG for a much more structurally robust
+            rocket, while maintaining a modular sliding design on the inside.
+          </p>
+        </li>
+      </ol>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="item-container column-1 row-1">
+        <a href="/" class="sub-item">
+          <p>nicholas fortune</p>
+          <p class="sub">hardware, code and systems</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-1">
+        <p>about and writing</p>
+        <p class="sub">background, notes, and adventures</p>
+      </div>
+      <div class="item-container column-3 row-1">
+        <a href="/about" class="sub-item">
+          <p>about me</p>
+          <p class="sub">my about page</p>
+        </a>
+        <a href="/now" class="sub-item">
+          <p>now</p>
+          <p class="sub">what I'm doing right now</p>
+        </a>
+        <a href="/blogs" class="sub-item">
+          <p>blogs</p>
+          <p class="sub">an index of all of my blogs</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-2">
+        <a href="/projects" class="sub-item footer-title-link">
+          <p>projects</p>
+          <p class="sub">click me to see all projects</p>
+        </a>
+      </div>
+      <div class="item-container column-3 row-2">
+        <a href="/projects/dragonfly-v0" class="sub-item">
+          <p>dragonfly v0</p>
+          <p class="sub">2024-2025 | autonomous guided model rocket</p>
+        </a>
+        <a href="/projects/neutron" class="sub-item">
+          <p>neutron</p>
+          <p class="sub">2026-present | c++ neural network library</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-3">
+        <p>contact and presence</p>
+        <p class="sub">where to find me</p>
+      </div>
+      <div class="item-container column-3 row-3">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="mailto:pro@nicholasfortune.ca"
+          class="sub-item"
+        >
+          <p>pro@nicholasfortune.ca</p>
+          <p class="sub">email</p>
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/nicholasfortune"
+          class="sub-item"
+        >
+          <p>@nicholasfortune</p>
+          <p class="sub">github</p>
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.youtube.com/@nicholasfortune"
+          class="sub-item"
+        >
+          <p>@nicholasfortune</p>
+          <p class="sub">youtube</p>
+        </a>
+      </div>
+      <p class="copyright row-4">
+        © 2026 nicholas fortune. code is AGPLv3, written content and media is CC
+        BY-SA 4.0.
+      </p>
+    </footer>
+  </body>
+</html>

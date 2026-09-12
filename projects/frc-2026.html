@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>frc 2026</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="project-header-container">
+      <div class="project-title-container">
+        <h1>frc 2026</h1>
+        <p class="project-subtitle">team 2013</p>
+        <p class="project-subtitle">18/10/2025 - 21/04/2026</p>
+        <p class="project-subtitle">
+          <a
+            class="link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/nicholasfortune/frc-2026"
+            >github.com/nicholasfortune/frc-2026</a
+          >
+        </p>
+        <p class="project-subtitle">concluded</p>
+      </div>
+      <dl class="project-info-container">
+        <div>
+          <dt>primary language</dt>
+          <dd>java</dd>
+        </div>
+        <div>
+          <dt>framework</dt>
+          <dd>command-based wpilib</dd>
+        </div>
+        <div>
+          <dt>drivetrain</dt>
+          <dd>ctre swerve</dd>
+        </div>
+        <div>
+          <dt>motor controller</dt>
+          <dd>ctre talon fx</dd>
+        </div>
+        <div>
+          <dt>vision</dt>
+          <dd>limelight 2 / apriltags</dd>
+        </div>
+        <div>
+          <dt>autonomous pathing</dt>
+          <dd>pathplanner</dd>
+        </div>
+        <div>
+          <dt>role</dt>
+          <dd>sole programmer</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <!-- Images -->
+      <picture>
+        <source
+          srcset="
+            /assets/images/frc-2026/low/robot-on-test-field.avif     400w,
+            /assets/images/frc-2026/medium/robot-on-test-field.avif  800w,
+            /assets/images/frc-2026/high/robot-on-test-field.avif   1200w,
+            /assets/images/frc-2026/ultra/robot-on-test-field.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/frc-2026/fallback/robot-on-test-field.webp"
+          alt="photo of frc team 2013's 2026 season robot on a test field"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row"></div>
+
+      <picture>
+        <source
+          srcset="
+            /assets/images/frc-2026/low/robot-in-workshop.avif     400w,
+            /assets/images/frc-2026/medium/robot-in-workshop.avif  800w,
+            /assets/images/frc-2026/high/robot-in-workshop.avif   1200w,
+            /assets/images/frc-2026/ultra/robot-in-workshop.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/frc-2026/fallback/robot-in-workshop.webp"
+          alt="photo of frc team 2013's 2026 season robot in the workshop with two people surround it"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row"></div>
+
+      <picture>
+        <source
+          srcset="
+            /assets/images/frc-2026/low/robot-on-field.avif     400w,
+            /assets/images/frc-2026/medium/robot-on-field.avif  800w,
+            /assets/images/frc-2026/high/robot-on-field.avif   1200w,
+            /assets/images/frc-2026/ultra/robot-on-field.avif  2400w
+          "
+          sizes="(max-width: 768px) 90vw, (max-width: 1280px) 75vw, 1000px"
+          type="image/avif"
+        />
+        <img
+          src="/assets/images/frc-2026/fallback/robot-on-field.webp"
+          alt="photo of frc team 2013's 2026 season robot stopped on a game field with a person inspecting it"
+          class="large-images"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
+      <div class="image-caption-row"></div>
+
+      <!-- Project text -->
+      <ol class="project-numbered-text">
+        <li>
+          <h2>frc 2026 game</h2>
+          <p>
+            In the FRC 2026 season, the game revolves around two primary
+            objectives: collecting foam balls, and launching them into a 2 m
+            tall “hub.” Detailed game rules are documented in the
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://firstfrc.blob.core.windows.net/frc2026/Manual/2026GameManual.pdf"
+              >official game manual</a
+            >.
+          </p>
+        </li>
+        <li>
+          <h2>hardware overview</h2>
+          <p>
+            This documentation describes the first robot revision utilized
+            throughout the majority of the competition season. The robot is made
+            of a largely aluminum-polycarbonate design to balance structural
+            integrity with a low weight to meet the 115 lb weight limit. The
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.swervedrivespecialties.com/products/mk4i-swerve-module"
+              >SDS Mk4i Swerve</a
+            >
+            drivetrain and all other mechanisms use
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://store.ctr-electronics.com/pages/kraken-motors"
+              >CTRE Kraken X60 / X44 motors</a
+            >
+            for their light weight, power efficiency, and internal relative
+            encoders for position feedback. A
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://docs.limelightvision.io/docs/docs-limelight/getting-started/limelight-2"
+              >Limelight 2</a
+            >
+            is used in tandem with a
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://store.ctr-electronics.com/products/pigeon-2"
+              >Pigeon 2.0</a
+            >
+            for pose estimation, and a
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.ni.com/docs/en-US/bundle/roborio-20-umanual/page/user-manual-welcome.html"
+              >roboRIO 2.0</a
+            >
+            is used as the system’s primary processing unit. The robot has one
+            fixed shooter and one dynamic shooter that can rotate on the yaw
+            axis. Turret pitch control was already implemented in software, but
+            the linear actuators physically required for this were
+            non-functional and the shooting flywheel was insufficiently powered,
+            making the planned long-range ball shooting infeasible. This
+            resulted in the turret ultimately being replaced by a second fixed
+            shooter assembly later in the season.
+          </p>
+        </li>
+        <li>
+          <h2>software overview</h2>
+          <p>
+            The robot’s software is largely standard command-based WPILib
+            template boilerplate. Initially, all software was made from scratch,
+            only using CTRE motor, Xbox controller, and basic WPILib interfacing
+            libraries. Rudimentary testing proved this lightweight code worked
+            flawlessly, but project management ultimately decided to scrap all
+            of it in favor of more traditional and time-proven code.
+            Consequently, the final codebase adheres to standard WPILib design
+            patterns and architectural conventions; foundational framework
+            mechanics will be omitted here as they are fully covered in the
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://docs.wpilib.org/en/stable/"
+              >official WPILib documentation</a
+            >. This project served as my introduction to Java, requiring me to
+            learn the language's syntax and object-oriented paradigms during
+            active development.
+          </p>
+        </li>
+        <li>
+          <h2>ballistic targeting</h2>
+          <p>
+            The program first calculates vertical velocity for a ball to reach
+            the 3 m trajectory apex, and then calculates the time of flight to
+            the hub. Dividing the relative horizontal displacement vector by the
+            time of flight yields the required horizontal velocities for the
+            ball to reach the hub, leaving us with the vertical velocity and the
+            horizontal velocities. Finding the Euler angle commands to send to
+            the turret actuation system is now straightforward
+            trigonometry—using two-argument arctangent with the horizontal
+            velocities yields the yaw command, and two-argument arctangent of
+            the vertical velocity and the magnitude of the horizontal velocities
+            yields the pitch command. Finding the magnitude of the 3-dimensional
+            vector yields the required exit velocity of the ball. This algorithm
+            served as my first program written in Java; the original source file
+            is archived
+            <a
+              class="link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="/assets/files/BallGuidance.java"
+              >here</a
+            >.
+          </p>
+        </li>
+        <li>
+          <h2>evaluation and analysis</h2>
+          <p>
+            The robot only achieved baseline functionality due to suboptimal
+            physical design choices. It effectively collected balls, but the
+            hopper functionality and launch mechanisms were suboptimal. The
+            hopper was undersized and operationally brittle, consistently losing
+            balls out of the top or jamming them in flywheel drive belts. The
+            launch mechanisms were slow, inaccurate, and prone to jamming as
+            well. If I were to do this again, I would make the ball storage
+            walls out of elastic mesh netting and fully enclose the storage bay,
+            allowing for large volumes of balls to be securely held. A single,
+            high-volume shooter would only have a pitch actuation system; the
+            drivetrain itself would control the heading, allowing for a simple
+            and efficient way to put balls in the hub. Otherwise, I believe
+            everything else was optimal or sufficient.
+          </p>
+        </li>
+      </ol>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="item-container column-1 row-1">
+        <a href="/" class="sub-item">
+          <p>nicholas fortune</p>
+          <p class="sub">hardware, code and systems</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-1">
+        <p>about and writing</p>
+        <p class="sub">background, notes, and adventures</p>
+      </div>
+      <div class="item-container column-3 row-1">
+        <a href="/about" class="sub-item">
+          <p>about me</p>
+          <p class="sub">my about page</p>
+        </a>
+        <a href="/now" class="sub-item">
+          <p>now</p>
+          <p class="sub">what I'm doing right now</p>
+        </a>
+        <a href="/blogs" class="sub-item">
+          <p>blogs</p>
+          <p class="sub">an index of all of my blogs</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-2">
+        <a href="/projects" class="sub-item footer-title-link">
+          <p>projects</p>
+          <p class="sub">click me to see all projects</p>
+        </a>
+      </div>
+      <div class="item-container column-3 row-2">
+        <a href="/projects/dragonfly-v0" class="sub-item">
+          <p>dragonfly v0</p>
+          <p class="sub">2024-2025 | autonomous guided model rocket</p>
+        </a>
+        <a href="/projects/neutron" class="sub-item">
+          <p>neutron</p>
+          <p class="sub">2026-present | c++ neural network library</p>
+        </a>
+      </div>
+      <div class="item-container footer-title column-2 row-3">
+        <p>contact and presence</p>
+        <p class="sub">where to find me</p>
+      </div>
+      <div class="item-container column-3 row-3">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="mailto:pro@nicholasfortune.ca"
+          class="sub-item"
+        >
+          <p>pro@nicholasfortune.ca</p>
+          <p class="sub">email</p>
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/nicholasfortune"
+          class="sub-item"
+        >
+          <p>@nicholasfortune</p>
+          <p class="sub">github</p>
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.youtube.com/@nicholasfortune"
+          class="sub-item"
+        >
+          <p>@nicholasfortune</p>
+          <p class="sub">youtube</p>
+        </a>
+      </div>
+      <p class="copyright row-4">
+        © 2026 nicholas fortune. code is AGPLv3, written content and media is CC
+        BY-SA 4.0.
+      </p>
+    </footer>
+  </body>
+</html>
