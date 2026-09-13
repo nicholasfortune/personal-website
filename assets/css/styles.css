@@ -26,7 +26,7 @@
     --bg-color-1: #000000;
     --bg-color-2: #252525;
     --text-color-1: #ffffff;
-    --text-color-2: #a6a6b2;
+    --text-color-2: #a7a7ab;
     --text-color-3: #7e2dff;
     --text-color-4: #a902fc;
   }
@@ -66,6 +66,7 @@ html {
 }
 
 body {
+  text-transform: lowercase;
   background-color: var(--bg-color-1);
   width: 1000px;
   margin: 0;
@@ -90,6 +91,12 @@ p,
 a {
   margin: 0;
   font-weight: inherit;
+}
+
+h1,
+h2,
+.lower {
+  text-transform: lowercase;
 }
 
 h1 {
@@ -244,6 +251,7 @@ a {
 }
 
 .project-numbered-text {
+  text-transform: none;
   display: flex;
   padding: 0;
   margin-top: calc(200px - calc(var(--text-line-height-3) * 2));
