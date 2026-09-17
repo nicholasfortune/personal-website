@@ -141,7 +141,7 @@ if [[ "$total_images" -gt 0 ]]; then
     fi
 
     cat <<EOF >> "$BLOCKS_FILE"
-<a href="/assets/images/gallery/ultra/${enc_name}.avif" class="sub"><picture><source srcset="/assets/images/gallery/low/${enc_name}.avif 400w, /assets/images/gallery/medium/${enc_name}.avif 800w, /assets/images/gallery/high/${enc_name}.avif 1200w, /assets/images/gallery/ultra/${enc_name}.avif 2400w" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 35.5vw, 1000px" type="image/avif" /><img src="/assets/images/gallery/fallback/${enc_name}.webp"${style_attr} class="gallery-images" loading="lazy" decoding="async" /></picture><p class="gallery-subtitle">/assets/images/gallery/ultra/${disp_name}.avif</p></a>
+<a href="/assets/images/gallery/ultra/${enc_name}.avif" class="sub"><picture><source srcset="/assets/images/gallery/low/${enc_name}.avif 400w, /assets/images/gallery/medium/${enc_name}.avif 800w, /assets/images/gallery/high/${enc_name}.avif 1200w, /assets/images/gallery/ultra/${enc_name}.avif 2400w" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 35.5vw, 484px" type="image/avif" /><img src="/assets/images/gallery/fallback/${enc_name}.webp"${style_attr} class="gallery-images" loading="lazy" decoding="async" /></picture><p class="gallery-subtitle">/assets/images/gallery/ultra/${disp_name}.avif</p></a>
 EOF
   done
   printf "\n" >&2
