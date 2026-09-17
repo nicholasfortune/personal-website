@@ -4,6 +4,7 @@
 # I'm probably never gonna learn bash, it seems like such a boring language lol
 # learning the intricacies of so many rapidly evolving systems with seemingly arbitrary interfaces just to put them together for a one-off thing seems like a terrible ROI anyway
 # anyway that's the end of my thoughts
+# I'm back 16/09/2026, there was an issue with layout shifting I noticed on a different implimentation, I think I fixed it with more AI.
 
 set -euo pipefail
 
@@ -45,6 +46,22 @@ done
 IFS=$'\n' sorted_files=($(printf '%s\n' "${valid_files[@]}" | sort -V))
 unset IFS
 
+# Helper function to extract width and height using available CLI tools
+get_image_dimensions() {
+  local img_path="$1"
+  local dimensions=""
+
+  if command -v identify >/dev/null 2>&1; then
+    dimensions=$(identify -format "%w %h" "$img_path" 2>/dev/null || true)
+  elif command -v ffprobe >/dev/null 2>&1; then
+    dimensions=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of default=nw=1:nk=1 "$img_path" 2>/dev/null | xargs || true)
+  elif command -v exiftool >/dev/null 2>&1; then
+    dimensions=$(exiftool -s3 -ImageWidth -ImageHeight "$img_path" 2>/dev/null | xargs || true)
+  fi
+
+  echo "$dimensions"
+}
+
 # Escape HTML special characters for inner text/attributes
 html_escape() {
   local s="$1"
@@ -70,18 +87,65 @@ url_encode() {
   done
 }
 
-# Generate whitespace-minified HTML template blocks
-for file in "${sorted_files[@]}"; do
-  filename=$(basename "$file")
-  raw_name="${filename%.*}"
+# Generate whitespace-minified HTML template blocks with progress bar and aspect ratio
+total_images=${#sorted_files[@]}
 
-  enc_name=$(url_encode "$raw_name")
-  disp_name=$(html_escape "$raw_name")
+if [[ "$total_images" -gt 0 ]]; then
+  start_time=$(date +%s)
+  bar_width=25
 
-  cat <<EOF >> "$BLOCKS_FILE"
-<a href="/assets/images/gallery/ultra/${enc_name}.avif" class="sub"><picture><source srcset="/assets/images/gallery/low/${enc_name}.avif 400w, /assets/images/gallery/medium/${enc_name}.avif 800w, /assets/images/gallery/high/${enc_name}.avif 1200w, /assets/images/gallery/ultra/${enc_name}.avif 2400w" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 35.5vw, 1000px" type="image/avif" /><img src="/assets/images/gallery/fallback/${enc_name}.webp" class="gallery-images" loading="lazy" decoding="async" /></picture><p class="gallery-subtitle">/assets/images/gallery/ultra/${disp_name}.avif</p></a>
+  for i in "${!sorted_files[@]}"; do
+    file="${sorted_files[$i]}"
+    current=$((i + 1))
+
+    # Calculate Progress and ETA
+    now=$(date +%s)
+    elapsed=$((now - start_time))
+
+    if (( elapsed > 0 && current > 0 )); then
+      remaining_items=$((total_images - current))
+      eta_seconds=$(( (elapsed * remaining_items) / current ))
+    else
+      eta_seconds=0
+    fi
+
+    percent=$(( current * 100 / total_images ))
+    filled=$(( percent * bar_width / 100 ))
+    empty=$(( bar_width - filled ))
+
+    # Generate progress bar characters
+    printf -v filled_str '%*s' "$filled" ''
+    filled_str="${filled_str// /#}"
+    printf -v empty_str '%*s' "$empty" ''
+    empty_str="${empty_str// /-}"
+
+    # Format ETA output (MM:SS)
+    eta_min=$((eta_seconds / 60))
+    eta_sec=$((eta_seconds % 60))
+    eta_fmt=$(printf "%02dm%02ds" "$eta_min" "$eta_sec")
+
+    # Render terminal progress bar over stderr
+    printf "\rProgress: [%s%s] %d/%d (%d%%) | ETA: %s" "$filled_str" "$empty_str" "$current" "$total_images" "$percent" "$eta_fmt" >&2
+
+    filename=$(basename "$file")
+    raw_name="${filename%.*}"
+
+    enc_name=$(url_encode "$raw_name")
+    disp_name=$(html_escape "$raw_name")
+
+    style_attr=""
+    read -r img_w img_h <<< "$(get_image_dimensions "$file")"
+
+    if [[ -n "${img_w:-}" && -n "${img_h:-}" ]]; then
+      style_attr=" style=\"aspect-ratio: ${img_w} / ${img_h};\""
+    fi
+
+    cat <<EOF >> "$BLOCKS_FILE"
+<a href="/assets/images/gallery/ultra/${enc_name}.avif" class="sub"><picture><source srcset="/assets/images/gallery/low/${enc_name}.avif 400w, /assets/images/gallery/medium/${enc_name}.avif 800w, /assets/images/gallery/high/${enc_name}.avif 1200w, /assets/images/gallery/ultra/${enc_name}.avif 2400w" sizes="(max-width: 768px) 90vw, (max-width: 1280px) 35.5vw, 1000px" type="image/avif" /><img src="/assets/images/gallery/fallback/${enc_name}.webp"${style_attr} class="gallery-images" loading="lazy" decoding="async" /></picture><p class="gallery-subtitle">/assets/images/gallery/ultra/${disp_name}.avif</p></a>
 EOF
-done
+  done
+  printf "\n" >&2
+fi
 
 # AWK processor using tag depth tracking for infinite re-run safety
 awk -v blocks_file="$BLOCKS_FILE" '
