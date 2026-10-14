@@ -1,12 +1,12 @@
 # My Website
 
-This is the second iteration of my personal website. Now featuring a minimal brutalist design, it follows function over form while keeping it pleasing to they eye. I use it as a curated hub for my general online presence.
+The second iteration of my personal website employs a brutalist, utility-focused design with minimal network overhead. Designed to keep payload sizes under 250KiB per page on 1080p viewports, it serves as my own curated hub for my general online presence.
 
 ## Features
 
 ### Brutal Minimalism
 
-Every decision is made to help the user as efficiently as possible following the minimal brutalist design philosophy.
+Harsh color contrasts, uppercase titles, and simple layouts sell the "brutalist" look while keeping information easy to locate and parse.
 
 ### No JavaScript
 
@@ -14,11 +14,11 @@ Completely static, simple, and wholesome.
 
 ### Responsive Design
 
-Media queries taylor each page for every device.
+Media queries taylor each page for most devices.
 
 ### Performance-First
 
-Every image is automatically re-scaled and re-encoded with a low, medium, high, and ultra AVIF image, with WebP fallbacks with the help of a LLM-made bash scrip (because who doesn't support WebP nowadays?)
+Every image is programmatically re-scaled and re-encoded with a low, medium, high, and ultra AVIF image, with WebP fallbacks with the help of a LLM-made bash script.
 
 ## License
 
