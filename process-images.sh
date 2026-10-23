@@ -2,6 +2,7 @@
 
 # Nick was here 11/08/2026
 # Nick was here again at 18/08/2026
+# Back again 23/10/2026 cuz avif is compressing the "high" presets more than I'd like and sharpness is non-existent
 # Takes images in ./assets/images/input, compresses them into 4 AVIF tiers + 1 WebP fallback.
 # vibecoded slop poo from here on out
 
@@ -28,18 +29,30 @@ if [ ${#input_dirs[@]} -eq 0 ]; then
     exit 1
 fi
 
-files=()
-skipped_dirs=0
-
-# 3. Check for existing output directories and gather files
+# Check if all directories already have full output sets
+all_exist=true
 for d in "${input_dirs[@]}"; do
     parent=$(dirname "$d")
-    
-    if [ -d "$parent/low" ] && [ -d "$parent/medium" ] && [ -d "$parent/high" ] && [ -d "$parent/ultra" ] && [ -d "$parent/fallback" ]; then
-        skipped_dirs=$((skipped_dirs + 1))
-        continue
+    if [ ! -d "$parent/low" ] || [ ! -d "$parent/medium" ] || [ ! -d "$parent/high" ] || [ ! -d "$parent/ultra" ] || [ ! -d "$parent/fallback" ]; then
+        all_exist=false
+        break
     fi
+done
 
+if [ "$all_exist" = true ] && [ ${#input_dirs[@]} -gt 0 ]; then
+    read -p "All output directories already exist. Would you like to overwrite them? [y/N] " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Exiting."
+        exit 0
+    fi
+fi
+
+files=()
+
+# 3. Gather files and ensure output directories exist
+for d in "${input_dirs[@]}"; do
+    parent=$(dirname "$d")
     mkdir -p "$parent/low" "$parent/medium" "$parent/high" "$parent/ultra" "$parent/fallback"
     
     for img in "$d"/*.jpg "$d"/*.jpeg "$d"/*.png "$d"/*.webp "$d"/*.jxl; do
@@ -50,10 +63,6 @@ done
 total_files=${#files[@]}
 
 if [ "$total_files" -eq 0 ]; then
-    if [ "$skipped_dirs" -gt 0 ]; then
-        echo "Notice: All $skipped_dirs discovered input folder(s) were skipped because output directories already exist."
-        exit 0
-    fi
     echo "Error: No valid .jpg, .jpeg, .png, .webp, or .jxl files found to process." >&2
     exit 1
 fi
@@ -121,28 +130,28 @@ for img in "${files[@]}"; do
     rel_path="${img#./}"
     echo "Processing ($current/$total_files): $rel_path"
 
-    # Encode AVIF Low
-    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=400:-2:flags=lanczos" -c:v libsvtav1 -preset 2 -crf 25 -b:v 0 "$parent_dir/low/${name}.avif" -v quiet || {
+    # Encode AVIF Low (8-bit)
+    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=400:-2:flags=lanczos" -pix_fmt yuv420p -c:v libsvtav1 -preset 2 -crf 25 -b:v 0 "$parent_dir/low/${name}.avif" -v quiet || {
         echo "Warning: Failed low AVIF for $filename"
     }
 
-    # Encode AVIF Medium
-    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=800:-2:flags=lanczos" -c:v libsvtav1 -preset 2 -crf 25 -b:v 0 "$parent_dir/medium/${name}.avif" -v quiet || {
+    # Encode AVIF Medium (10-bit)
+    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=800:-2:flags=lanczos" -pix_fmt yuv420p10le -c:v libsvtav1 -preset 2 -crf 25 -b:v 0 "$parent_dir/medium/${name}.avif" -v quiet || {
         echo "Warning: Failed medium AVIF for $filename"
     }
 
-    # Encode AVIF High
-    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=1200:-2:flags=lanczos" -c:v libsvtav1 -preset 2 -crf 18 -b:v 0 "$parent_dir/high/${name}.avif" -v quiet || {
+    # Encode AVIF High (10-bit)
+    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=1200:-2:flags=lanczos" -pix_fmt yuv420p10le -c:v libsvtav1 -preset 2 -crf 21 -b:v 0 "$parent_dir/high/${name}.avif" -v quiet || {
         echo "Warning: Failed high AVIF for $filename"
     }
 
-    # Encode AVIF Ultra
-    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=2400:-2:flags=lanczos" -c:v libsvtav1 -preset 2 -crf 18 -b:v 0 "$parent_dir/ultra/${name}.avif" -v quiet || {
+    # Encode AVIF Ultra (10-bit)
+    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=2400:-2:flags=lanczos" -pix_fmt yuv420p10le -c:v libsvtav1 -preset 2 -crf 18 -b:v 0 "$parent_dir/ultra/${name}.avif" -v quiet || {
         echo "Warning: Failed ultra AVIF for $filename"
     }
 
-    # Encode WebP Fallback
-    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=400:-2:flags=lanczos" -c:v libwebp -compression_level 6 -q:v 90 "$parent_dir/fallback/${name}.webp" -v quiet || {
+    # Encode WebP Fallback (8-bit)
+    ffmpeg -y -i "$img" -map_metadata -1 -vf "scale=400:-2:flags=lanczos" -pix_fmt yuv420p -c:v libwebp -compression_level 6 -q:v 90 "$parent_dir/fallback/${name}.webp" -v quiet || {
         echo "Warning: Failed WebP fallback for $filename"
     }
 

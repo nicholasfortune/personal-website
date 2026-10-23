@@ -14,11 +14,11 @@ Completely static, simple, and wholesome.
 
 ### Responsive Design
 
-Media queries taylor each page for most devices.
+Media queries tailor each page for most devices.
 
 ### Performance-First
 
-Every image is programmatically re-scaled and re-encoded with a low, medium, high, and ultra AVIF image, with WebP fallbacks with the help of a LLM-made bash script.
+Every image is programmatically re-scaled and re-encoded with low, medium, high, and ultra AVIF versions and WebP fallbacks—automated by a LLM-made bash script.
 
 ## License
 
